@@ -1,11 +1,48 @@
-use std::thread;
+#![allow(dead_code)]
+#![allow(unused_variables)]
+
+//use std::thread;
 use std::io;
-use std::time::Duration;
+//use std::time::Duration;
 use console::Term;
 use console::style;
 use dialoguer::Select;
 use std::process::Command;
-fn 
+
+fn cve_research() {
+    println!("Please enter the cve number!");
+    let mut cve_number = String::new();
+    io::stdin()
+        .read_line(&mut cve_number)
+        .expect("Failed to read");
+     cve_number.pop();
+     Command::new("./scrape/scrape")
+            .arg(cve_number)
+            .spawn()
+            .expect("command failed to start");   // Execute `ls` in the current directory of the program.
+}
+
+fn kernel_compile() {
+    let items = vec!["1) 6.6-rc7","2) 6.5.9","3) 6.1.60","4) 5.15.137","5) 5.10.199","6) 5.4.259","7) 4.19.297","8) 4.14.328"];
+
+    let mut selection = Select::new()
+        .with_prompt("What do you choose?")
+        .items(&items)
+        .interact()
+        .unwrap();
+    println!("You chose: {}", items[selection]);
+    selection = selection+1;
+    let mut cve_number = String::new();
+    io::stdin()
+        .read_line(&mut cve_number)
+        .expect("Failed to read");
+     cve_number.pop();
+     Command::new("./compile.sh")
+            .arg(selection.to_string())
+            .spawn()
+            .expect("compile command failed to start");   // Execute `ls` in the current directory of the program.
+}
+
 fn main(){
     let term = Term::stdout();
     let _= term.write_line(" 
@@ -24,7 +61,7 @@ fn main(){
     }
     */
     println!("A cli tool for {} hacking", style("kernel").cyan());
-    thread::sleep(Duration::from_millis(1000));
+    // thread::sleep(Duration::from_millis(1000));
     let items = vec!["Vulnerability Analyser", "CVE Research", "Kernel Compile"];
 
     let selection = Select::new()
@@ -36,11 +73,10 @@ fn main(){
 
     match selection {
         1 => {
-            println!("Please enter the cve number!");
-            let mut cve_number = String::new();
-            io::stdin()
-                .read_line(&mut cve_number)
-                .expect("Failed to read");
+            cve_research();
+        },
+        2 => {
+            kernel_compile();
         }
         _=>{println!("try again")}
     }
