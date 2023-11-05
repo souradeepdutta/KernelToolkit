@@ -6,7 +6,7 @@ result = subprocess.run(["uname", "-r"], stdout=subprocess.PIPE, text=True)
 kernel_version = result.stdout.strip()
 print("Kernel Version:"+kernel_version)
 
-url = "https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=6.1.0-10"#+kernel_version
+url = "https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query="+kernel_version
 
 response = requests.get(url)
 
