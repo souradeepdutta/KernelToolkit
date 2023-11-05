@@ -9,6 +9,16 @@ use console::style;
 use dialoguer::Select;
 use std::process::Command;
 
+fn vulnerability_analyze() {
+    println!("Getting current kernel versions");
+    println!("Top {} for your kernel", style("3 Vulnerabilities").red());
+
+     Command::new("./scrape2/main")
+            .spawn()
+            .expect("command failed to start");   // Execute `ls` in the current directory of the program.
+
+}
+
 fn cve_research() {
     println!("Please enter the cve number!");
     let mut cve_number = String::new();
@@ -32,11 +42,7 @@ fn kernel_compile() {
         .unwrap();
     println!("You chose: {}", items[selection]);
     selection = selection+1;
-    let mut cve_number = String::new();
-    io::stdin()
-        .read_line(&mut cve_number)
-        .expect("Failed to read");
-     cve_number.pop();
+
      Command::new("./compile.sh")
             .arg(selection.to_string())
             .spawn()
@@ -72,6 +78,9 @@ fn main(){
     println!("You chose: {}", items[selection]);
 
     match selection {
+        0 => {
+            vulnerability_analyze();
+        },
         1 => {
             cve_research();
         },

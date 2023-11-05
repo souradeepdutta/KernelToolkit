@@ -1,0 +1,6 @@
+- print cool looking ascii text having the name of the tool
+- options
+    - kernel compile
+    - find vulnerabilities of current kernel version
+    - find vulnerabilities in a certain version
+    - fix of our kernel version
