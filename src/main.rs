@@ -1,9 +1,7 @@
 #![allow(dead_code)]
 #![allow(unused_variables)]
 
-//use std::thread;
 use std::io;
-//use std::time::Duration;
 use console::Term;
 use console::style;
 use dialoguer::Select;
@@ -15,8 +13,7 @@ fn vulnerability_analyze() {
 
      Command::new("./scrape2/main")
             .spawn()
-            .expect("command failed to start");   // Execute `ls` in the current directory of the program.
-
+            .expect("command failed to start");
 }
 
 fn cve_research() {
@@ -29,7 +26,7 @@ fn cve_research() {
      Command::new("./scrape/scrape")
             .arg(cve_number)
             .spawn()
-            .expect("command failed to start");   // Execute `ls` in the current directory of the program.
+            .expect("command failed to start"); 
 }
 
 fn kernel_compile() {
@@ -46,7 +43,7 @@ fn kernel_compile() {
      Command::new("./compile.sh")
             .arg(selection.to_string())
             .spawn()
-            .expect("compile command failed to start");   // Execute `ls` in the current directory of the program.
+            .expect("compile command failed to start");   
 }
 
 fn main(){
@@ -59,15 +56,7 @@ fn main(){
  _| |  \\ \\_| \\__., | |     | | | || \\__., | |     _| |_ | \\__. || \\__. || |  | |`\\ \\  | | | |,  
 |____||____|'.__.'[___]   [___||__]'.__.'[___]   |_____| '.__.'  '.__.'[___][__|  \\_][___]\\__/  
                            ");
-    //thread::sleep(Duration::from_millis(2000));
-    /*
-    match term.clear_line() {
-        Ok(_) => println!("cleared"),
-        Err(error) => {println!("{error}")}
-    }
-    */
     println!("A cli tool for {} hacking", style("kernel").cyan());
-    // thread::sleep(Duration::from_millis(1000));
     let items = vec!["Vulnerability Analyser", "CVE Research", "Kernel Compile"];
 
     let selection = Select::new()
@@ -90,17 +79,4 @@ fn main(){
         _=>{println!("try again")}
     }
 
-    
-    // Execute `ls` in the current directory of the program.
-    /*
-    let mut list_dir = Command::new("ls");
-    list_dir.status().expect("process failed to execute");
-    */
-
-    /*
- Command::new("apt")
-        .arg("install")
-        .spawn()
-        .expect("sh command failed to start");   // Execute `ls` in the current directory of the program.
-*/
 }
