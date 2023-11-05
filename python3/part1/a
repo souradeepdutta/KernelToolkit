@@ -1,0 +1,38 @@
+ 18   """                     │Traceback (most recent call last):                                                                                     [44/424]
+ 19                           │  File "/home/sun/coding/os/hackathon/scraping2/main.py", line 46, in <module>                                                 
+ 20   # Make a request to the │    vulnerabilities = get_vulnerabilities(url)                                                                                 
+    NVD website.              │                      ^^^^^^^^^^^^^^^^^^^^^^^^                                                                                 
+ 21   response = requests.get(│  File "/home/sun/coding/os/hackathon/scraping2/main.py", line 35, in get_vulnerabilities                                      
+    url)                      │    cve_id = row.find("td").text                                                                                               
+ 22                           │             ^^^^^^^^^^^^^^^^^^^                                                                                               
+ 23   # Parse the response HTM│AttributeError: 'NoneType' object has no attribute 'text'                                                                      
+    L with BeautifulSoup.     │(scraping) cardi~/coding/os/hackathon/scraping2 python3 main.py                                                                
+ 24   soup = BeautifulSoup(res│Traceback (most recent call last):                                                                                             
+    ponse.content, "html.parse│  File "/home/sun/coding/os/hackathon/scraping2/main.py", line 38, in <module>                                                 
+    r")                       │    vulnerabilities = get_vulnerabilities(url)                                                                                 
+ 25                           │                      ^^^^^^^^^^^^^^^^^^^^^^^^                                                                                 
+ 26   # Find all of the vulner│  File "/home/sun/coding/os/hackathon/scraping2/main.py", line 30, in get_vulnerabilities                                      
+    ability rows.             │    return vulnerabilities_rows                                                                                                
+ 27   vulnerability_rows = sou│           ^^^^^^^^^^^^^^^^^^^^                                                                                                
+    p.find_all("tr")          │NameError: name 'vulnerabilities_rows' is not defined. Did you mean: 'vulnerability_rows'?                                     
+ 28                           │(scraping) cardi~/coding/os/hackathon/scraping2 python3 main.py                                                                
+ 29                           │<tr>                                                                                                                           
+ 30   return vulnerability_row│<th nowrap="nowrap">Vuln ID <i class="fa fa-bug fa-flip-vertical"></i></th>                                                    
+    s                         │<th>Summary <i class="fa fa-info-circle"></i></th>                                                                             
+ 31                           │<th nowrap="nowrap">CVSS Severity <i class="fa fa-balance-scale"></i></th>                                                     
+ 32                           │</tr>                                                                                                                          
+ 33 if __name__ == "__main__":│<tr data-testid="vuln-row-0">                                                                                                  
+ 34   # Get the NVD search res│<th nowrap="nowrap"><strong><a data-testid="vuln-detail-link-0" href="/vuln/detail/CVE-2015-8699">CVE-2015-8699</a></strong><br
+    ults URL.                 │/></th>                                                                                                                        
+ 35   url = "https://nvd.nist.│<td>                                                                                                                           
+    gov/vuln/search/results?fo│<p data-testid="vuln-summary-0">Multiple cross-site scripting (XSS) vulnerabilities in CA Release Automation (formerly LISA Rel
+    rm_type=Basic&results_type│ease Automation) 5.0.2 before 5.0.2-227, 5.5.1 before 5.5.1-1616, 5.5.2 before 5.5.2-434, and 6.1.0 before 6.1.0-1026 allow rem
+    =overview&query=6.1.0-10" │ote attackers to inject arbitrary web script or HTML via unspecified vectors.</p> <strong>Published:</strong>                  
+ 36                           │<span data-testid="vuln-published-on-0">June 28, 2016; 9:59:01 PM -0400</span>                                                 
+ 37   # Get the vulnerabilitie│</td>                                                                                                                          
+    s from the NVD website.   │<td nowrap="nowrap">                                                                                                           
+ 38   vulnerabilities = get_vu│<span id="cvss3-link">                                                                                                         
+    lnerabilities(url)        │<em>V3.0:</em> <a class="label label-warning" data-testid="vuln-cvss3-link-0" href="/vuln-metrics/cvss/v3-calculator?name=CVE-2
+main.py        30,22       77%│015-8699&amp;vector=AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N&amp;version=3.0&amp;source=NIST">6.1 MEDIUM</a><br>                    
+                              │</br></span> <span id="cvss2-link0"> <em>    V2.0:</em> <a class="label label-warning" data-testid="vuln-cvss2-link-0" href="/v
+[0] 0:[tmux]*                                                                                                                           "moon" 23:41 04-Nov-23
